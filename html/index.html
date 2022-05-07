@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,30 +9,98 @@
     <link rel="icon" href="/projeto-individual/images/icon berserk.png">
     <title>Berserquiz</title>
 </head>
+
 <body>
     <div id="header">
-<div class="container header">
-<div id="logo"><img src="/projeto-individual/images/icon berserk.png" alt=""></div>
-<ul class="navbar">
-    <li class="nav_menu"><a>Home</a></li>
-    <li class="nav_menu"><a>Raking</a></li>
-    <li class="nav_menu"><a>Login</a></li>
-    <li class="nav_menu"><a>Cadastro</a></li>
-</ul>
-</div>
+        <div class="container header">
+            <div id="logo"><img src="/projeto-individual/images/icon berserk.png" alt=""></div>
+            <ul class="navbar">
+                <li class="nav_menu"><a>Home</a></li>
+                <li class="nav_menu"><a>Ranking</a></li>
+                <li class="nav_menu"><a>Login</a></li>
+                <li class="nav_menu"><a>Cadastro</a></li>
+            </ul>
+        </div>
 
     </div>
     <div class="container banner">
         <h1>Seja bem-vindo ao quiz de Berserk!</h1>
-        <div id="container_test">
-        <div id="carrossel">
-           <span class="foto">Acompanhe nossas redes sociais</span>
-           <span class="foto">Notícias sobre o anime todos os dias</span>
-            
+
+    </div>
+    <div id="container_quiz">
+        <div class="informacoes">
+            <h2>Informações sobre o Quiz:</h2>
+            <div class="info_quiz">1-Cada pergunta tem 15 segundos para ser respondida.</div>
+            <div class="info_quiz">2-São 10 perguntas cada arco.</div>
+            <div class="info_quiz">3-Cada resposta correta vale 10 pontos.</div>
+            <div class="info_quiz">4-Se tentar refazer o teste, seus pontos serão zerados.</div>
+            <div class="info_quiz">5-Cada pergunta tem apenas uma resposta correta.</div>
+        </div>
+        <span id="escolher_arco">Escolha sobre qual arco será o quiz:</span><br><br>
+        <div class="ages ouro"> <label for="golden_age">Era de ouro</label><input id="golden_age" type="radio"></div>
+        <div class="ages prata"> <label for="silver_age">Era de prata</label><input id="silver_age" type="radio"></div>
+        <div class="ages bronze"><label for="bronze_age">Era de bronze</label><input id="bronze_age" type="radio"></div>
+        <br><br>
+        <button id="quiz_btn" onclick="comecar_quiz()">Começar quiz</button>
+    </div>
+    <div id="quiz">
+        <ol>
+            <li id="questao1" value="1A" onclick="verificarResposta(this,this)"> </li>
+            <li id="questao2" value="1B" onclick="verificarResposta(this,this)"> </li>
+            <li id="questao3" value="1C" onclick="verificarResposta(this,this)"> </li>
+            <li id="questao4" value="1D" onclick="verificarResposta(this,this)"> </li>
+            <li id="questao5" value="1E" onclick="verificarResposta(this,this)"> </li>
+        </ol>
+    </div>
+    <div id="resultado_quiz">
+        <div id="chartQuiz" style="width:800px">
+            <canvas id="myChart"></canvas>
         </div>
     </div>
-</div>
-    <div id="sobre"></div>
 </body>
+
 </html>
+<script src="path/to/chartjs/dist/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 <script src="../Script/script.js"></script>
+<script>
+    var ctx = document.getElementById("myChart").getContext("2d");
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Era de ouro", "Era de prata", "Era de bronze"],
+            datasets: [{
+                label: '% De acertos por arco',
+                data: [12, 19, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
