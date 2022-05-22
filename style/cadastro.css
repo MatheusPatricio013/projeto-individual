@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-X: hidden;
+    background-image: url("../images/fundo_griffith.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+}
+
+#header {
+    background-color: black;
+}
+
+.container.header {
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+#logo {
+    width: 140px;
+}
+
+#logo img {
+    width: 90px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.navbar {
+    margin-right: 150px;
+    display: flex;
+    align-items: center;
+
+}
+
+.navbar li {
+
+    display: flex;
+    padding: 5%;
+}
+
+.navbar li a {
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.navbar li a:hover {
+    color: red;
+}
+
+.nav_menu.agora{
+    background-color: red;
+}
+#container_cadastro{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 500px;
+    margin-left: 15vw;
+    margin-top: 10vw;
+    background-color: rgba(255, 0, 0, 0.117);
+    border-radius: 30px;
+}
+#container_cadastro span{
+    display: flex;
+    align-self: center;
+    margin: 5px;
+    color: wheat;
+}
+#container_cadastro input{
+    display: flex;
+    align-self: center;
+    width: 70%;
+    padding: 5px;
+    margin: auto;
+}

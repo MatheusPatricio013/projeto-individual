@@ -15,10 +15,10 @@
         <div class="container header">
             <div id="logo"><img src="/projeto-individual/images/icon berserk.png" alt=""></div>
             <ul class="navbar">
-                <li class="nav_menu"><a>Home</a></li>
-                <li class="nav_menu"><a>Ranking</a></li>
-                <li class="nav_menu"><a>Login</a></li>
-                <li class="nav_menu"><a>Cadastro</a></li>
+                <li class="nav_menu agora"><a href="index.html">Home</a></li>
+                <li class="nav_menu"><a href="ranking.html">Ranking </a></li>
+                <li class="nav_menu "><a href="login.html">Login</a></li>
+                <li class="nav_menu"><a href="cadastro.html">Cadastro</a></li>
             </ul>
         </div>
 
@@ -36,22 +36,25 @@
             <div class="info_quiz">4-Se tentar refazer o teste, seus pontos serão zerados.</div>
             <div class="info_quiz">5-Cada pergunta tem apenas uma resposta correta.</div>
         </div>
-        <span id="escolher_arco">Escolha sobre qual arco será o quiz:</span><br><br>
-        <div class="ages ouro"> <label for="golden_age">Era de ouro</label><input id="golden_age" type="radio"></div>
-        <div class="ages prata"> <label for="silver_age">Era de prata</label><input id="silver_age" type="radio"></div>
-        <div class="ages bronze"><label for="bronze_age">Era de bronze</label><input id="bronze_age" type="radio"></div>
-        <br><br>
         <button id="quiz_btn" onclick="comecar_quiz()">Começar quiz</button>
     </div>
-    <div id="quiz">
-        <ol>
-            <li id="questao1" value="1A" onclick="verificarResposta(this,this)"> </li>
-            <li id="questao2" value="1B" onclick="verificarResposta(this,this)"> </li>
-            <li id="questao3" value="1C" onclick="verificarResposta(this,this)"> </li>
-            <li id="questao4" value="1D" onclick="verificarResposta(this,this)"> </li>
-            <li id="questao5" value="1E" onclick="verificarResposta(this,this)"> </li>
-        </ol>
+    <div id="quiz" style="display: none;">
+        <div id="lista_itens">
+            <h1 id="questao"></h1>
+            <div class="div_respostas"><input type="radio" name="respostas" value="A"> <span id="respostaA"></span>
+            </div>
+            <div class="div_respostas"><input type="radio" name="respostas" value="B"> <span id="respostaB"></span>
+            </div>
+            <div class="div_respostas"> <input type="radio" name="respostas" value="C"><span id="respostaC"></span>
+            </div>
+            <div class="div_respostas"> <input type="radio" name="respostas" value="D"><span id="respostaD"></span>
+            </div>
+        </div>
+        <button class="botoes" onclick="checar()">Checar</button>
+        <button class="botoes" onclick="proximaQuestao()">Próxima</button>
+        <span id="span_pontos">Pontos atuais: 0</span>
     </div>
+
     <div id="resultado_quiz">
         <div id="chartQuiz" style="width:800px">
             <canvas id="myChart"></canvas>
