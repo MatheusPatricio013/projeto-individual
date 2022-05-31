@@ -115,9 +115,13 @@ function comecar_quiz() {
 }
 
 function proximaQuestao() {
-    if (valor == 10){
-spanPontuacao.innerHTML = `Parabéns!!! você fez ${pontos} pontos!!!`
-        
+    if (valor == 9) {
+        respostaA.style.display = 'none'
+        respostaB.style.display = 'none'
+        respostaC.style.display = 'none'
+        respostaD.style.display = 'none'
+        spanPontuacao.innerHTML = `Parabéns!!! você fez ${pontos} pontos!!!`
+
     }
     temporizador = 16
     console.log(perguntasQuiz[valor].Questão + valor)
@@ -136,27 +140,38 @@ spanPontuacao.innerHTML = `Parabéns!!! você fez ${pontos} pontos!!!`
 
 function checar() {
     var respostaSelecionada = document.querySelector('input[name="respostas"]:checked').value;
+    var input = document.querySelector('input[name="respostas"]:checked')
+    var label = input.nextSibling
+    var span = label.firstChild
+    span.style.backgroundColor = 'transparent'
     console.log('respostaSelecionada', respostaSelecionada)
     console.log('perguntasQuiz[valor]', perguntasQuiz[valor])
     if (respostaSelecionada == perguntasQuiz[valor].Correta) {
         console.log('temporizador', temporizador)
         if (temporizador == 15 || temporizador == 14 || temporizador == 13 || temporizador == 12) {
-           pontos+=30
+            pontos += 30
         } else if (temporizador == 11 || temporizador == 10 || temporizador == 9) {
-            pontos+= 15
-        } else if (temporizador == 8 || temporizador == 7 || temporizador == 6  || temporizador == 5) {
-            pontos+= 5
+            pontos += 15
+        } else if (temporizador == 8 || temporizador == 7 || temporizador == 6 || temporizador == 5) {
+            pontos += 5
         } else {
-            pontos+= 1
+            pontos += 1
         }
+
+        var label = input.nextSibling
+        var span = label.firstChild
+        span.style.backgroundColor = 'green'
         pontos += 10
         pontos = pontos
         spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
         proximaQuestao()
 
+        console.log(span)
     }
     else {
-         alert('burro')
+        var label = input.nextSibling
+        var span = label.firstChild
+        span.style.backgroundColor = 'red'
         pontos = pontos
         spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
         proximaQuestao()
