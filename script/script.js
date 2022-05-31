@@ -80,10 +80,23 @@ const perguntasQuiz = [
         Correta:'B'
     },
 ]
-
+var temporizador = 15
 var valor = 0
 var pontos= 0
 var spanPontuacao = document.getElementById('span_pontos')
+var tituloTempo= document.getElementById('tempo')
+tituloTempo.style.color='white'
+
+var intervaloTemporizador= setInterval(() => {
+    if(temporizador==0){
+        proximaQuestao()
+        temporizador=15
+    }   
+    temporizador--
+    tituloTempo.innerHTML= "Tempo:"+temporizador
+    
+},1000);
+
 function comecar_quiz(){
     const divQuiz = document.getElementById('quiz')
     divQuiz.style.display="block"
@@ -97,6 +110,7 @@ function comecar_quiz(){
     respostaB.innerHTML="B) "+perguntasQuiz[0].B
     respostaC.innerHTML="C) "+perguntasQuiz[0].C
     respostaD.innerHTML="D) "+perguntasQuiz[0].D
+
 }
 
 function proximaQuestao(){
