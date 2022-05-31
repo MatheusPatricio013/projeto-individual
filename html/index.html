@@ -40,7 +40,7 @@
     </div>
     <div id="quiz" style="display: none;">
         <div id="lista_itens">
-            <h1 id="tempo">TEMPO: </h1>
+            <h1 id="tempo" style="margin-left: 30px">TEMPO: </h1>
             <h1 id="questao"></h1>
             <div class="div_respostas">
                 <input type="radio" name="respostas" value="A" id="resposta1"> 
@@ -56,8 +56,8 @@
             </div>
         </div>
         <button class="botoes" onclick="checar()">Checar</button>
-        <button class="botoes" onclick="proximaQuestao()">Próxima</button>
-        <span id="span_pontos">Pontos atuais: 0</span>
+        <button  id='botaoProximaQuestao' class="botoes" onclick="proximaQuestao()">Próxima</button>
+        <span id="span_pontos" style="margin-top: 30px;">Pontos atuais: 0</span>
     </div>
 
     <div id="resultado_quiz">

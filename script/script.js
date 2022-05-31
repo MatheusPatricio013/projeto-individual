@@ -116,10 +116,12 @@ function comecar_quiz() {
 
 function proximaQuestao() {
     if (valor == 9) {
-        respostaA.style.display = 'none'
-        respostaB.style.display = 'none'
-        respostaC.style.display = 'none'
-        respostaD.style.display = 'none'
+        var divPerguntas = document.getElementById('lista_itens')
+        var divbot = document.getElementById('botaoProximaQuestao')
+        var botoes = document.querySelector('.botoes')
+        botoes.style.display='none'
+        divbot.style.display='none'
+        divPerguntas.style.display='none'
         spanPontuacao.innerHTML = `Parabéns!!! você fez ${pontos} pontos!!!`
 
     }
@@ -143,7 +145,7 @@ function checar() {
     var input = document.querySelector('input[name="respostas"]:checked')
     var label = input.nextSibling
     var span = label.firstChild
-    span.style.backgroundColor = 'transparent'
+    
     console.log('respostaSelecionada', respostaSelecionada)
     console.log('perguntasQuiz[valor]', perguntasQuiz[valor])
     if (respostaSelecionada == perguntasQuiz[valor].Correta) {
@@ -158,24 +160,21 @@ function checar() {
             pontos += 1
         }
 
-        var label = input.nextSibling
-        var span = label.firstChild
+       
         span.style.backgroundColor = 'green'
         pontos += 10
         pontos = pontos
         spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
-        proximaQuestao()
 
         console.log(span)
     }
     else {
-        var label = input.nextSibling
-        var span = label.firstChild
+       
         span.style.backgroundColor = 'red'
         pontos = pontos
         spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
-        proximaQuestao()
     }
-
-
+   proximaQuestao()
+    
+    
 }
