@@ -40,20 +40,20 @@
     </div>
     <div id="quiz" style="display: none;">
         <div id="lista_itens">
+            <h1 id="tempo">TEMPO: </h1>
             <h1 id="questao"></h1>
-            <div class="div_respostas"><input type="radio" name="respostas" value="A"> <span id="respostaA"></span>
+            <div class="div_respostas"><input type="radio" name="respostas" value="A" id="resposta1"> <label for="resposta1"><span id="respostaA"></span></label>
             </div>
-            <div class="div_respostas"><input type="radio" name="respostas" value="B"> <span id="respostaB"></span>
+            <div class="div_respostas"><input type="radio" name="respostas" value="B" id="resposta2"> <label for="resposta2"><span id="respostaB"></span></label>
             </div>
-            <div class="div_respostas"> <input type="radio" name="respostas" value="C"><span id="respostaC"></span>
+            <div class="div_respostas"> <input type="radio" name="respostas" value="C" id="resposta3"><label for="resposta3"><span id="respostaC"></span></label>
             </div>
-            <div class="div_respostas"> <input type="radio" name="respostas" value="D"><span id="respostaD"></span>
+            <div class="div_respostas"> <input type="radio" name="respostas" value="D" id="resposta4"><label for="resposta4"><span id="respostaD"></span></label>
             </div>
         </div>
         <button class="botoes" onclick="checar()">Checar</button>
         <button class="botoes" onclick="proximaQuestao()">Próxima</button>
         <span id="span_pontos">Pontos atuais: 0</span>
-        <h1 id="tempo">TEMPO: </h1>
     </div>
 
     <div id="resultado_quiz">
