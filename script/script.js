@@ -160,8 +160,7 @@ function checar() {
             pontos += 1
         }
 
-       
-        span.style.backgroundColor = 'green'
+      
         pontos += 10
         pontos = pontos
         spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
@@ -170,7 +169,7 @@ function checar() {
     }
     else {
        
-        span.style.backgroundColor = 'red'
+      
         pontos = pontos
         spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
     }
