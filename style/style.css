@@ -53,7 +53,7 @@ body {
     background-color: red;
 }
 .container.banner {
-    background-image: url("/projeto-individual/images/thumb-1920-764519.jpg");
+    background-image: url("../images/thumb-1920-764519.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     align-items: center;
