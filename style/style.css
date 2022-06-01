@@ -222,6 +222,7 @@ body {
 
 }
 .div_respostas span{
+    cursor: pointer;
     font-size: 25px;
 color: rgb(255, 255, 255);
     width: 350px;
@@ -256,6 +257,7 @@ color: rgb(255, 255, 255);
         text-shadow: none;
     }
 }
+
 button{
     background: url("../images/sangue.gif");
     background-size: cover;
