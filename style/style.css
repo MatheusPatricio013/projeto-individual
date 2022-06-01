@@ -50,7 +50,8 @@ body {
 }
 
 .nav_menu.agora{
-    background-color: red;
+    border-bottom: #870000 3px solid;
+    padding: 3px;
 }
 .container.banner {
     background-image: url("../images/thumb-1920-764519.jpg");

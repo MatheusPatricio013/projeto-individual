@@ -116,6 +116,7 @@ function comecar_quiz() {
 
 function proximaQuestao() {
     if (valor == 9) {
+        var musicaGuts = document.getElementById('tema_guts')
         var divPerguntas = document.getElementById('lista_itens')
         var divbot = document.getElementById('botaoProximaQuestao')
         var botoes = document.querySelector('.botoes')
@@ -123,6 +124,7 @@ function proximaQuestao() {
         divbot.style.display='none'
         divPerguntas.style.display='none'
         spanPontuacao.innerHTML = `Parabéns!!! você fez ${pontos} pontos!!!`
+        musicaGuts.play()
 
     }
     temporizador = 16
@@ -145,7 +147,8 @@ function checar() {
     var input = document.querySelector('input[name="respostas"]:checked')
     var label = input.nextSibling
     var span = label.firstChild
-    
+    var musicaAcerto= document.getElementById('respostaCertaAudio')
+    var musicaErro= document.getElementById('respostaErrada')
     console.log('respostaSelecionada', respostaSelecionada)
     console.log('perguntasQuiz[valor]', perguntasQuiz[valor])
     if (respostaSelecionada == perguntasQuiz[valor].Correta) {
@@ -159,7 +162,7 @@ function checar() {
         } else {
             pontos += 1
         }
-
+        musicaAcerto.play()
       
         pontos += 10
         pontos = pontos
@@ -169,7 +172,7 @@ function checar() {
     }
     else {
        
-      
+      musicaErro.play()
         pontos = pontos
         spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
     }

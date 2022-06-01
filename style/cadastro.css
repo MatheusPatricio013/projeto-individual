@@ -53,7 +53,8 @@ body {
 }
 
 .nav_menu.agora{
-    background-color: red;
+    border-bottom: #870000 3px solid;
+    padding: 3px;
 }
 #container_cadastro{
     display: flex;
@@ -61,7 +62,7 @@ body {
     width: 300px;
     height: 500px;
     margin-left: 15vw;
-    margin-top: 10vw;
+    margin-top: 1%;
     background-color: rgba(255, 0, 0, 0.117);
     border-radius: 30px;
 }
@@ -70,6 +71,7 @@ body {
     align-self: center;
     margin: 5px;
     color: wheat;
+    font-size: 20px
 }
 #container_cadastro input{
     display: flex;
@@ -77,4 +79,30 @@ body {
     width: 70%;
     padding: 5px;
     margin: auto;
+    border-radius: 10px;
+    border: 0;
+}
+.btn.entrar {
+    cursor: pointer;
+    background-image: linear-gradient(to right, #870000 0%, #190A05 51%, #870000 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    align-items: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px rgb(224, 0, 0);
+    border-radius: 10px;
+    display: block;
+    margin-left: 16%;
+    width: 200px;
+   
+}
+
+.btn.entrar:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+    animation: flicker 2.5s infinite alternate;
 }
