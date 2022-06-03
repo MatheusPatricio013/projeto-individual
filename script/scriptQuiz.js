@@ -124,7 +124,10 @@ function proximaQuestao() {
         divbot.style.display='none'
         divPerguntas.style.display='none'
         spanPontuacao.innerHTML = `Parabéns!!! você fez ${pontos} pontos!!!`
-        musicaGuts.play()
+        setTimeout(() => {
+            musicaGuts.play()
+            
+        }, 2000);
 
     }
     temporizador = 16

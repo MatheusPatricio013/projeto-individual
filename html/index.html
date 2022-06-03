@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="icon" href="../images/icon berserk.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Grenze+Gotisch:wght@200&family=IBM+Plex+Sans+Arabic:wght@300;400;500&display=swap');
+    </style>
     <title>Berserquiz</title>
 </head>
 
@@ -24,95 +27,155 @@
 
     </div>
     <div class="container banner">
-        <h1>Seja bem-vindo ao quiz de Berserk!</h1>
+        <h1> Seja bem-vindo à fã page de Berserk! </h1>
 
     </div>
-    <div id="container_quiz">
-        <div class="informacoes">
-            <h2>Informações sobre o Quiz:</h2>
-            <div class="info_quiz">1-Cada pergunta tem 15 segundos para ser respondida.</div>
-            <div class="info_quiz">2-São 10 perguntas cada arco.</div>
-            <div class="info_quiz">3-Cada resposta correta vale 10 pontos.</div>
-            <div class="info_quiz">4-Se tentar refazer o teste, seus pontos serão zerados.</div>
-            <div class="info_quiz">5-Cada pergunta tem apenas uma resposta correta.</div>
-        </div>
-        <button id="quiz_btn" onclick="comecar_quiz()">Começar quiz</button>
-    </div>
-    <div id="quiz" style="display: none;">
-        <div id="lista_itens">
-            <h1 id="tempo" style="margin-left: 30px">TEMPO: </h1>
-            <h1 id="questao"></h1>
-            <div class="div_respostas">
-                <input type="radio" name="respostas" value="A" id="resposta1"> 
-                <label for="resposta1">
-                    <span id="respostaA"></span>
-                </label>
-            </div>
-            <div class="div_respostas"><input type="radio" name="respostas" value="B" id="resposta2"> <label for="resposta2"><span id="respostaB"></span></label>
-            </div>
-            <div class="div_respostas"> <input type="radio" name="respostas" value="C" id="resposta3"><label for="resposta3"><span id="respostaC"></span></label>
-            </div>
-            <div class="div_respostas"> <input type="radio" name="respostas" value="D" id="resposta4"><label for="resposta4"><span id="respostaD"></span></label>
-            </div>
-        </div>
-        <button class="botoes" onclick="checar()">Checar</button>
-        <button  id='botaoProximaQuestao' class="botoes" onclick="proximaQuestao()">Próxima</button>
-        <span id="span_pontos" style="margin-top: 30px;">Pontos atuais: 0</span>
-    </div>
-<audio id='tema_guts'src="../sounds/guts-theme.mp3"></audio>
-<audio id='respostaCertaAudio'src="../sounds/the_price_is_right_ding.mp3"></audio>
-<audio id='respostaErrada'src="../sounds/respuesta-incorrecta.mp3"></audio>
-    <div id="resultado_quiz">
-        <div id="chartQuiz" style="width:400px">
-            <canvas id="myChart"></canvas>
-        </div>
+    <div id="card_introducao">
+        <span> Este site foi construído com amor para mostrar o quanto esse mangá, considerado por muitos
+            artistas
+            renomados, é na verdade
+            uma obra de arte.Com ele eu aprendi que quando algo te derruba, você precisa ser forte
+            para se levantar, e mais forte ainda para evoluir com isso, e é isso que nos torna BERSERKERS!
+            Descubra aqui mais curiosidades sobre o mangá, detalhes da história, e até
+            mesmo um <a href="../html/ranking.html" id="tagQuiz">Quiz</a> para ver o quão fã você é!</span>
     </div>
 
-    <footer><span>Esse projeto é uma homenagem para meu pai, que posso afirmar com <br>
-        toda certeza que é um Berserk na vida real, pois ele consegue<br> manter sua índole, valores e 
-        características independente das coisas <br>que passou, que mesmo sendo injustiçado muitas vezes,
-        ainda sabe que aquilo que ele <br>acredita é o certo, e jamais pensou em desistir. Pessoas como meu pai
-        não se tornam mais fracas quando <br>passam por alguma dificuldade, apenas ficam mais fortes, e isso é
-        oque os torna Berserkers.
-    </span>  </footer>
+    <div id="container_resumo">
+
+        <H1>Resumo de Berserk:</H1><br> <br>
+        <span id="primeiraParteResumo">Em um mundo cruel, onde a violência é a única forma de sobrevivência, existe
+            um pequeno garoto chamado
+            Guts que ficou órfão durante uma terrível guerra.
+            Guts acabou sendo adotado por Gambino, líder de um grupo de mercenários, e por isso treinou o jovem
+            garoto
+            como um um assassino. Em pouco tempo, Guts se
+            tornou o melhor dos mercenários, mas acabou passando por outros traumas que o fizeram se tornar uma
+            pessoa
+            amarga e sem visão de um futuro ou de uma vida
+            melhor, pois tudo que ele conhecia era a dor. Alguns anos depois, Guts conheceu o bando do Falcão, um
+            grupo
+            de guerreiros liderados por Griffith, um idealista
+            que tinha como objetivo transformar o mundo em um lugar melhor, e os dois possuiam ideais muito
+            diferentes,
+            mas Guts encontrou nesse grupo um propósito, algo
+            para lutar que não fosse apenas em troca de moedas, e acabou se tornando um dos mais fiéis seguidores de
+            Griffith. <span id="verMais">Ver mais</span> </span><span id="continuacaoResumo" style="display:none"><br>
+            <br>
+            Depois de passarem por várias batalhas, Guts começou a perceber que não estava seguindo seu propósito ou
+            seus sonhos, e sim os sonhos de Griffith, e
+            por isso acabou desertando o grupo e seguindo seu caminho.Anos mais tarde, ele descobre que Griffith foi
+            aprisionado em um castelo e torturado
+            pelo rei após tentar ter coito com a princesa, e Guts junto com o bando do Falcão resgatam Griffith que
+            estava a beira da morte. Griffith então
+            recebe um amuleto amaldiçoado conhecido como Behelit, que tem o poder de transformar um humano em um
+            Apóstulo, que seria um humano corrompido
+            que se tornaria um demônio e adquirindo poderes e uma força amedrontadora. Griffith por desejar o poder
+            acima de tudo para conquistar seus objetivos, acabou
+            aceitando o pacto e se tornando um Apóstulo. Durante o evento, Griffith e Guts tiveram uma luta terrível, já
+            que os dois perceberam que não tinham mais
+            os mesmos objetivos, e Guts já não via mais seu amigo de antes, apenas um monstro em sua frente. Depois de
+            uma árdua batalham Guts sai gravemente ferido
+            de lá, e ainda descobre que o mundo em que ele vivia, agora está cercado de demônios que foram soltos após a
+            transformação de Griffith. Então o espadachim
+            negro decide vagar pelo mundo matando essas criaturas, e buscando sua vingança contra Griffith, e então é aí
+            que começa uma jornada de ideais, batalhas épicas,
+            e uma história cheia de filosofias sobre quem realmente somos, e quem queremos ser quando coisas ruins
+            acontecem, e se as pessoas são más porque o mundoé assim
+            , ou se são más apenas por ter um coração sombrio.<br> <span id="verMenos">Ver menos</span>
+        </span><br><br><br><br><br>
+    </div>
+    <div class="slider">
+        <h1>OS PERSONAGENS</h1>
+        <div class="slide primeiro">
+            <h3>Guts</h3>
+            <img src="../images/guts.webp" width="400px">
+        </div>
+        <div class="slide">
+            <h3>Griffith</h3>
+            <img src="../images/FullBodyGriffith.webp" width="400px">
+        </div>
+        <div class="slide">
+            <h3>Caska</h3>
+            <img src="../images/caska.jpeg" width="400px">
+        </div>
+        <div class="slide">
+            <h3>Nosferatu Zodd</h3>
+            <img src="../images/zodd.jpg" width="400px">
+        </div>
+        <div class="slide">
+            <h3>Farnese</h3>
+            <img src="../images/farnese.jpg" width="400px">
+        </div>
+        <div class="slide">
+            <h3>Grunbeld</h3>
+            <img src="../images/Grunbeld_Profile_Miura.webp" width="400px">
+        </div>
+        <div class="slide">
+            <h3>Ganishka</h3>
+            <img src="../images/Ganishka_Manga.webp" width="400px">
+        </div>
+        <div class="slide">
+            <h3>Skull knight</h3>
+            <img src="../images/skull.jpg" width="400px">
+        </div>
+        <div class="slide">
+            <h3>Ideia do mal</h3>
+            <img src="../images/ideia.png" width="400px">
+        </div>
+        <div class="slide">
+            <h3>Void</h3>
+            <img src="../images/Void_Manga.webp" width="400px">
+        </div>
+
+
+
+        <div class="slides">
+            <input type="radio" name="btn-slide" id="btn1">
+            <input type="radio" name="btn-slide" id="btn2">
+            <input type="radio" name="btn-slide" id="btn3">
+        <input type="radio" name="btn-slide" id="btn4">
+        <input type="radio" name="btn-slide" id="btn5">
+        <input type="radio" name="btn-slide" id="btn6">
+        <input type="radio" name="btn-slide" id="btn7">
+        <input type="radio" name="btn-slide" id="btn8">
+        <input type="radio" name="btn-slide" id="btn9">
+        <input type="radio" name="btn-slide" id="btn10">
+    </div>
+    <div class="navigation-auto">
+        <div class="auto-btn"></div>
+        <div class="auto-btn"></div>
+        <div class="auto-btn"></div>
+        <div class="auto-btn"></div>
+        <div class="auto-btn"></div>
+        <div class="auto-btn"></div>
+        <div class="auto-btn"></div>
+        <div class="auto-btn"></div>
+        <div class="auto-btn"></div>
+        <div class="auto-btn"></div>
+    </div>
+    <div class="manual-navigation">
+        <label for="btn1" class="manual-btn"></label>
+        <label for="btn2" class="manual-btn"></label>
+        <label for="btn3" class="manual-btn"></label>
+        <label for="btn4" class="manual-btn"></label>
+        <label for="btn5" class="manual-btn"></label>
+        <label for="btn6" class="manual-btn"></label>
+        <label for="btn7" class="manual-btn"></label>
+        <label for="btn8" class="manual-btn"></label>
+        <label for="btn9" class="manual-btn"></label>
+        <label for="btn10" class="manual-btn"></label>
+    </div>
+</div>
+    <div id="container_armadura">
+        <h2>A armadura Berserk</h2>
+        <img src="../images/armadura berserk.jpg">
+        <span></span>
+    </div>
+
+    <footer>
+
+    </footer>
 </body>
 
 </html>
-<script src="path/to/chartjs/dist/Chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
-<script src="../Script/script.js"></script>
-<script>
-    var ctx = document.getElementById("myChart").getContext("2d");
-
-    var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ["% De acertos","% De erros"],
-            datasets: [{
-                label: ['acertos','faltaram'],
-                data: [80,20],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                 
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                  
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-</script>
+<script src="../script/scriptIndex.js"></script>

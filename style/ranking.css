@@ -1,0 +1,239 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-X: hidden;
+}
+
+#header {
+    background-color: black;
+}
+
+.container.header {
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+#logo {
+    width: 140px;
+}
+
+#logo img {
+    width: 90px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.navbar {
+    margin-right: 150px;
+    display: flex;
+    align-items: center;
+
+}
+
+.navbar li {
+
+    display: flex;
+    padding: 5%;
+}
+
+.navbar li a {
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.navbar li a:hover {
+    color: red;
+}
+
+.nav_menu.agora{
+    border-bottom: #870000 3px solid;
+    padding: 3px;
+}
+
+#container_quiz {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container_quiz span {
+    font-size: 30px;
+}
+
+#container_quiz label {
+    font-size: 30px;
+}
+
+#container_quiz input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#quiz ol {
+    display: block;
+    font-style: none;
+    list-style-type: none;
+    list-style: none;
+}
+
+#resultado_quiz {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+
+#container_quiz{
+    color: white;
+    background: black
+}
+#container_quiz span{
+    margin-top: 30px;
+}
+#container_quiz button{
+    margin-bottom: 30px;
+    border-radius: 4%;
+    
+}
+
+#container_quiz button {background-image: linear-gradient(to right, #aa0707 0%, #5b0909  51%, #050304  100%)}
+#container_quiz button {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 5px #eee;
+   border-radius: 10px;
+   display: block;
+ }
+
+ #container_quiz button:hover {
+     cursor: pointer;
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+.info_quiz{
+    font-size: 16px;
+}
+#quiz{
+    background-color: black;
+    margin:0 auto;
+    margin-top: -25px;
+    
+}
+
+
+
+.div_respostas{
+    width: 20%;
+    display: flex;
+   margin: 0 auto;
+   margin-left: 42%;
+   padding: 20px;
+}
+#questao{
+    padding-top: 50px;
+    text-align: center;
+    color:silver;
+    text-shadow:
+    4px 4px 1px #300000,
+    4px 6px 1px #400000,
+    4px 8px 1px #500000,
+    4px 10px 1px #600000,
+    4px 12px 1px #700000,
+    4px 14px 1px #800000,
+    4px 16px 1px #900000,
+    4px 18px 1px #A00000,
+    4px 0px 1px #B00000,
+    4px 0px 1px #C00000,
+    4px 0px 1px #D00000,
+    4px 0px 1px #E00000,
+    4px 0px 2px #FF0000;
+}
+.div_respostas input{
+    cursor: pointer;
+    size: 40px;
+    height: 20px;
+    width: 30px;
+}
+.div_respostas input:checked{
+    
+    size: 40px;
+    height: 20px;
+    width: 30px;
+
+}
+.div_respostas span{
+    cursor: pointer;
+    font-size: 25px;
+color: rgb(255, 255, 255);
+    width: 350px;
+    border-radius: 10px;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0px 0px 1px #300000,
+    0px 0px 1px #400000,
+    0px 0px 1px #500000,
+    0px 2px 1px #600000,
+    0px 2px 1px #A00000;
+        animation: flicker 1.5s infinite alternate;
+}
+@keyframes flicker {
+
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+
+        text-shadow:
+            0 0 4px rgb(173, 9, 9),
+            0 0 11px rgb(158, 19, 19),
+            0 0 19px #fff,
+            0 0 40px rgb(107, 8, 8),
+            0 0 80px rgb(255, 255, 255),
+            0 0 90px rgb(255, 0, 0),
+            0 0 100px rgb(224, 224, 224),
+            0 0 150px rgb(255, 0, 0),
+
+    }
+
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+button{
+    background: url("../images/sangue.gif");
+    background-size: cover;
+    cursor: pointer;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 200px;
+    height: 50px;
+    border-radius: 40px;
+    align-items: center;
+    text-align: center;
+    justify-content: center ;
+    background-color: #7c0a02;
+    font-weight: bold;
+    color: white;
+   
+}
+#span_pontos{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 15px 15px 14px;
+    font-size: 20px;
+    border-bottom: #300000 14px solid;
+}
