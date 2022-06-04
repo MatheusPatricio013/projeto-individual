@@ -34,7 +34,7 @@
 </div>
 <div id="quiz" style="display: none;">
     <div id="lista_itens">
-        <h1 id="tempo" style="margin-left: 30px">TEMPO: </h1>
+        <h1 id="tempo" style="margin-left: 30px">Tempo:16 </h1>
         <h1 id="questao"></h1>
         <div class="div_respostas">
             <input type="radio" name="respostas" value="A" id="resposta1"> 
@@ -58,14 +58,12 @@
 <audio id='respostaErrada'src="../sounds/respuesta-incorrecta.mp3"></audio>
 <div id="resultado_quiz">
     <div id="containerAcertos">
-        <h2>Veja sua quantidade de acertos:</h2><br>
-        <div id="chartQuiz" style="width:400px">
-            <canvas id="myChart"></canvas>
+        <div id="chartQuiz" style="width:40vw;height: 40vh;">
+            <canvas id="myChart"  style="width:100vw;height: 100vh;"></canvas>
         </div>
     </div>
 <div id="containerRanking">    
-    <h1>Os 10 melhores no ranking da semana foram:</h1><br>
-    <div id="chartQuizRanking" style="width:400px">
+    <div id="chartQuizRanking" style="width:60vw">
         <canvas id="myChartRanking"></canvas>
     </div>
 </div>
@@ -100,9 +98,21 @@
             }]
         },
         options: {
+            title: {
+            display: true,
+            text: 'Estatísticas',
+            fontColor:'white',
+        fontSize: 32},
+        legend: {
+                labels: {
+                    fontColor: "white",
+                    fontSize: 18
+                }},
             scales: {
                 yAxes: [{
                     ticks: {
+                        fontColor:'white',
+                        fontSize:20,
                         beginAtZero: true
                     }
                 }]
@@ -113,16 +123,32 @@
     var myChart2 = new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: ["% De acertos","% De erros"],
+            labels: ["Matheus","zeca","Carla","Juca","Claudia","Felipe","Pablo","Ana","carlos","Pedro"],
             datasets: [{
-                label: ['acertos','faltaram'],
-                data: [80,20],
+                label: ["Pontos"],
+                data: [220,210,180,120,80,50,40,40,30,20,],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
+                'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
                  
                 ],
                 borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
                     'rgba(255,99,132,1)',
                     'rgba(54, 162, 235, 1)',
                   
@@ -131,9 +157,35 @@
             }]
         },
         options: {
+            title: {
+            display: true,
+            text: 'Ranking dos 10 melhores da semana!',
+            fontSize: 32,
+            fontColor:'white'}, 
+            legend: {
+                labels: {
+                    fontColor: "white",
+                    fontSize: 18
+                }},
             scales: {
                 yAxes: [{
                     ticks: {
+                        fontColor:'white',
+                        fontSize:20,
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor:'white',
+                        fontSize:20,
+                        beginAtZero: true
+                    }
+                }],
+                labels: [{
+                    ticks: {
+                        fontColor:'white',
+                        fontSize:20,
                         beginAtZero: true
                     }
                 }]
