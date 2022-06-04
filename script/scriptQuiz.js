@@ -80,24 +80,16 @@ const perguntasQuiz = [
         Correta: 'B'
     },
 ]
-var temporizador = 16
+var temporizador = 17
 var valor = 0
 var pontos = 0
 var spanPontuacao = document.getElementById('span_pontos')
 var tituloTempo = document.getElementById('tempo')
 tituloTempo.style.color = 'white'
 
-var intervaloTemporizador = setInterval(() => {
-    if (temporizador == 0) {
-        proximaQuestao()
-    }
-    temporizador--
-    tituloTempo.innerHTML = "Tempo:" + temporizador
-
-}, 1000);
 
 function comecar_quiz() {
-    temporizador = 18
+    temporizador = 17
     const divQuiz = document.getElementById('quiz')
     divQuiz.style.display = "block"
     const questao = document.getElementById('questao')
@@ -110,6 +102,19 @@ function comecar_quiz() {
     respostaB.innerHTML = "B) " + perguntasQuiz[0].B
     respostaC.innerHTML = "C) " + perguntasQuiz[0].C
     respostaD.innerHTML = "D) " + perguntasQuiz[0].D
+    
+intervaloTemporizador = setInterval(() => {
+    if (temporizador == 0) {
+        proximaQuestao()
+        setTimeout(() => {
+
+
+        }, 2000);
+    }
+    temporizador--
+    tituloTempo.innerHTML = "Tempo:" + temporizador
+
+}, 1000);
 
 
 }
@@ -120,17 +125,16 @@ function proximaQuestao() {
         var divPerguntas = document.getElementById('lista_itens')
         var divbot = document.getElementById('botaoProximaQuestao')
         var botoes = document.querySelector('.botoes')
-        botoes.style.display='none'
-        divbot.style.display='none'
-        divPerguntas.style.display='none'
+        botoes.style.display = 'none'
+        divbot.style.display = 'none'
+        divPerguntas.style.display = 'none'
         spanPontuacao.innerHTML = `Parabéns!!! você fez ${pontos} pontos!!!`
         setTimeout(() => {
             musicaGuts.play()
             
         }, 2000);
-
     }
-    temporizador = 16
+    temporizador = 17
     console.log(perguntasQuiz[valor].Questão + valor)
     const questao = document.getElementById('questao')
     const respostaA = document.getElementById('respostaA')
@@ -150,8 +154,8 @@ function checar() {
     var input = document.querySelector('input[name="respostas"]:checked')
     var label = input.nextSibling
     var span = label.firstChild
-    var musicaAcerto= document.getElementById('respostaCertaAudio')
-    var musicaErro= document.getElementById('respostaErrada')
+    var musicaAcerto = document.getElementById('respostaCertaAudio')
+    var musicaErro = document.getElementById('respostaErrada')
     console.log('respostaSelecionada', respostaSelecionada)
     console.log('perguntasQuiz[valor]', perguntasQuiz[valor])
     if (respostaSelecionada == perguntasQuiz[valor].Correta) {
@@ -166,7 +170,7 @@ function checar() {
             pontos += 1
         }
         musicaAcerto.play()
-      
+
         pontos += 10
         pontos = pontos
         spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
@@ -174,12 +178,12 @@ function checar() {
         console.log(span)
     }
     else {
-       
-      musicaErro.play()
+
+        musicaErro.play()
         pontos = pontos
         spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
     }
-   proximaQuestao()
-    
-    
+    proximaQuestao()
+
+
 }
