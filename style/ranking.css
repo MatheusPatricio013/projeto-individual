@@ -1,8 +1,12 @@
 body {
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Grenze+Gotisch:wght@200&family=IBM+Plex+Sans+Arabic:wght@300;400;500&display=swap');
+    margin: 0;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: roboto;
+    font-size: 20px;
     overflow-X: hidden;
+    background-color: black;
 }
 
 #header {
@@ -37,12 +41,17 @@ body {
 
     display: flex;
     padding: 5%;
+    
+ 
 }
 
 .navbar li a {
     font-weight: bold;
     color: white;
     cursor: pointer;
+    list-style: none;
+    text-decoration: none;
+    
 }
 
 .navbar li a:hover {
@@ -50,7 +59,6 @@ body {
 }
 
 .nav_menu.agora{
-    border-bottom: #870000 3px solid;
     padding: 3px;
 }
 
@@ -83,11 +91,34 @@ body {
 }
 
 #resultado_quiz {
+    align-items: center;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     margin-top: 30px;
+    width: 100%;
+    color: white;
+    
 
 }
+#chartQuizRanking{
+    background-image: url("../images/img.jpg");
+    background-size:100% 100% ;
+    margin-bottom: 200px;
+    border-radius: 30px;
+    border:3px white solid;
+    padding: 30px;
+    margin-top: 30px;
+}
+#chartQuiz{
+    background-image: url("../images/img2.jpg");
+    background-repeat: no-repeat;
+    background-size:40% 100% ;
+    border:3px white solid;  
+    border-radius: 30px;
+    padding: 30px;
+}
+
 
 #container_quiz{
     color: white;
@@ -123,7 +154,7 @@ body {
    text-decoration: none;
  }
 .info_quiz{
-    font-size: 16px;
+    font-size: 26px;
 }
 #quiz{
     background-color: black;
