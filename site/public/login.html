@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="icon" href="./assets/imgs/icon berserk.png">
+    <title>Berserkers |Login</title>
+</head>
+<body>
+    <div id="header">
+        <div class="container header">
+            <div id="logo"><img src="./assets/imgs/icon berserk.png" alt=""></div>
+            <ul class="navbar">
+                <li class="nav_menu" ><a href="index.html">Home</a></li>
+                <li class="nav_menu agora"><a href="login.html">Login</a></li>
+                <li class="nav_menu"><a href="cadastro.html">Cadastro</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="container_login">
+        <span class="span_input"">Email:</span><br>
+        <input type="text" id="input_email"  class="nome_input email"><br>
+        <span id="span_erro_email"></span>
+        <span class="span_input">Senha:</span><br>
+        <input type="password" id="input_senha" class="nome_input senha" ><br>
+        <span id="span_erro_senha"></span>
+        <button onclick="entrar() " class="btn entrar">Entrar</button>
+    </div>
+</body>
+</html>
+<script>
+     function entrar() {
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+
+        //Validação e-mail
+        if (
+            emailVar.indexOf("@") < 3 ||
+            emailVar.endsWith(".com.br", ".com", ".ind.br", ".ind")
+        ) {
+            span_erro_email.innerHTML = '*Insira "@" e terminação .com, por exemplo';
+        } else {
+            span_erro_email.innerHTML = "✓";
+        }
+
+        //Validação senha
+
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+            }),
+        })
+            .then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!");
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then((json) => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
+
+                        setTimeout(function () {
+                            window.location = "ranking.html";
+                        }, 1000); // apenas para exibir o loading
+                    });
+                } else {
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then((texto) => {
+                        console.error(texto);
+                        finalizarAguardar(texto);
+                    });
+                }
+            })
+            .catch(function (erro) {
+                console.log(erro);
+            });
+
+        return false;
+    }
+
+</script>

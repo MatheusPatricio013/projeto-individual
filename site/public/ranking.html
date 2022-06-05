@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/ranking.css">
+    <title>Berserkers | Quiz</title>
+</head>
+
+<body>
+    <div id="header">
+        <div class="container header">
+            <div id="logo"><img src="./assets/imgs/icon berserk.png" alt=""></div>
+            <ul class="navbar">
+                <li class="nav_menu"><a href="perfil.html">Olá</a></li>
+                <li class="nav_menu "><a href="index.html">Home</a></li>
+                <li class="nav_menu"><a href="perfil.html">Perfil</a></li>
+                <li class="nav_menu "><a href="login.html">Sair</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <div id="container_quiz">
+        <div class="informacoes">
+            <h2>Informações sobre o Quiz:</h2>
+            <div class="info_quiz">1-Cada pergunta tem 15 segundos para ser respondida.</div>
+            <div class="info_quiz">2-São 10 perguntas cada arco.</div>
+            <div class="info_quiz">3-Cada resposta correta vale 10 pontos.</div>
+            <div class="info_quiz">4-Se tentar refazer o teste, seus pontos serão zerados.</div>
+            <div class="info_quiz">5-Cada pergunta tem apenas uma resposta correta.</div>
+        </div>
+        <button id="quiz_btn" onclick="comecar_quiz()">Começar quiz</button>
+    </div>
+    <div id="quiz" style="display: none;">
+        <div id="lista_itens">
+            <h1 id="tempo" style="margin-left: 30px">Tempo:16 </h1>
+            <h1 id="questao"></h1>
+            <div class="div_respostas">
+                <input type="radio" name="respostas" value="A" id="resposta1">
+                <label for="resposta1">
+                    <span id="respostaA"></span>
+                </label>
+            </div>
+            <div class="div_respostas"><input type="radio" name="respostas" value="B" id="resposta2"> <label
+                    for="resposta2"><span id="respostaB"></span></label>
+            </div>
+            <div class="div_respostas"> <input type="radio" name="respostas" value="C" id="resposta3"><label
+                    for="resposta3"><span id="respostaC"></span></label>
+            </div>
+            <div class="div_respostas"> <input type="radio" name="respostas" value="D" id="resposta4"><label
+                    for="resposta4"><span id="respostaD"></span></label>
+            </div>
+        </div>
+        <button id='botaoProximaQuestao' class="botoes" onclick="proximaQuestao()">Próxima</button>
+        <span id="span_pontos" style="margin-top: 30px;">Pontos atuais: 0</span>
+    </div>
+    <audio id='tema_guts' src="./sounds/guts-theme.mp3"></audio>
+    <audio id='respostaCertaAudio' src="./sounds/the_price_is_right_ding.mp3"></audio>
+    <audio id='respostaErrada' src="./sounds/respuesta-incorrecta.mp3"></audio>
+    <div id="resultado_quiz" style="display:none">
+        <div id="containerAcertos">
+            <div id="chartQuiz" style="width:30vw">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div id="containerRanking">
+            <div id="chartQuizRanking" style="width:60vw">
+                <canvas id="myChartRanking"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="path/to/chartjs/dist/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<script>
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var ctx2 = document.getElementById("myChartRanking").getContext("2d");
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["% De acertos", "% De erros"],
+            datasets: [{
+                label: ['acertos', 'faltaram'],
+                data: [80, 20],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Estatísticas',
+                fontColor: 'white',
+                fontSize: 32
+            },
+            legend: {
+                labels: {
+                    fontColor: "white",
+                    fontSize: 18
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: 'white',
+                        fontSize: 20,
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ["Matheus", "zeca", "Carla", "Juca", "Claudia", "Felipe", "Pablo", "Ana", "carlos", "Pedro"],
+            datasets: [{
+                label: ["Pontos"],
+                data: [220, 210, 180, 120, 80, 50, 40, 40, 30, 20,],
+                backgroundColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Ranking dos 10 melhores da semana!',
+                fontSize: 32,
+                fontColor: 'white'
+            },
+            legend: {
+                labels: {
+                    fontColor: "white",
+                    fontSize: 18
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: 'white',
+                        fontSize: 20,
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: 'white',
+                        fontSize: 20,
+                        beginAtZero: true
+                    }
+                }],
+                labels: [{
+                    ticks: {
+                        fontColor: 'white',
+                        fontSize: 20,
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    const perguntasQuiz = [
+        {
+            Questão: "Qual o nome do protagonista?",
+            A: "Gats",
+            B: "Gutsu",
+            C: "Gutss",
+            D: "Guts",
+            Correta: 'D'
+        },
+        {
+            Questão: "Qual o nome do melhor amigo do protagonista?",
+            A: "Grifin",
+            B: "Griffith",
+            C: "Griffinth",
+            D: "Grif",
+            Correta: 'B'
+        },
+        {
+            Questão: "Como se chama a espada utilizada por Guts?",
+            A: "Dragonslayer",
+            B: "Caça dragões",
+            C: "Madatora",
+            D: "DragonSlash",
+            Correta: 'A'
+        },
+        {
+            Questão: "Quem foi a primeira vitima de Guts?",
+            A: "Gambino",
+            B: "Casca",
+            C: "Griffith",
+            D: "Gambit",
+            Correta: 'A'
+        },
+        {
+            Questão: "Como alguém se torna um apóstolo?",
+            A: "Matando um outro apóstulo",
+            B: "Sacrificando um ancião",
+            C: "Através de  um sacrifício com o Behelit",
+            D: "Em um pacto de sangue na lua cheia",
+            Correta: 'C'
+        },
+        {
+            Questão: "Qual o nome do grupo dos apóstolos?",
+            A: "A mão de Deus",
+            B: "Os cavaleiros do apocalipse",
+            C: "Os 12 pecados",
+            D: "A ira de Deus",
+            Correta: 'A'
+        },
+        {
+            Questão: "Como se chama o amor de Guts?",
+            A: "Mara",
+            B: "Griffith",
+            C: "Casca",
+            D: "Casker",
+            Correta: 'C'
+        },
+        {
+            Questão: "Qual o evento em que Griffith renasceu como apóstolo?",
+            A: "Eclipse",
+            B: "Lua de sangue",
+            C: "Behelit",
+            D: "A reencarnação",
+            Correta: 'A'
+        },
+        {
+            Questão: "Em qual era Guts entrou para o bando do Falcão?",
+            A: "Era de ouro",
+            B: "Era de bronze",
+            C: "Era de prata",
+            D: "Era de madeira",
+            Correta: 'A'
+        },
+        {
+            Questão: "Qual o nome da armadura de Guts?",
+            A: "Armadura Negra",
+            B: "Armadura Berserker",
+            C: "Defesa Sombria",
+            D: "A escuridão",
+            Correta: 'B'
+        },
+    ]
+    var temporizador = 17
+    var valor = 0
+    var pontos = 0
+    var tempoRespostas= 0
+    var spanPontuacao = document.getElementById('span_pontos')
+    var tituloTempo = document.getElementById('tempo')
+    tituloTempo.style.color = 'white'
+
+
+    function comecar_quiz() {
+        temporizador = 17
+        const divQuiz = document.getElementById('quiz')
+        divQuiz.style.display = "block"
+        const questao = document.getElementById('questao')
+        const respostaA = document.getElementById('respostaA')
+        const respostaB = document.getElementById('respostaB')
+        const respostaC = document.getElementById('respostaC')
+        const respostaD = document.getElementById('respostaD')
+        questao.innerHTML = perguntasQuiz[0].Questão
+        respostaA.innerHTML = "A) " + perguntasQuiz[0].A
+        respostaB.innerHTML = "B) " + perguntasQuiz[0].B
+        respostaC.innerHTML = "C) " + perguntasQuiz[0].C
+        respostaD.innerHTML = "D) " + perguntasQuiz[0].D
+
+        intervaloTemporizador = setInterval(() => {
+            if (temporizador == 0) {
+                proximaQuestao()
+            }
+            temporizador--
+            tituloTempo.innerHTML = "Tempo:" + temporizador
+
+        }, 1000);
+
+
+    }
+
+    function proximaQuestao() {
+        const questao = document.getElementById('questao')
+        const respostaA = document.getElementById('respostaA')
+        const respostaB = document.getElementById('respostaB')
+        const respostaC = document.getElementById('respostaC')
+        const respostaD = document.getElementById('respostaD')
+        questao.innerHTML = perguntasQuiz[valor + 1].Questão
+        respostaA.innerHTML = "A) " + perguntasQuiz[valor + 1].A
+        respostaB.innerHTML = "B) " + perguntasQuiz[valor + 1].B
+        respostaC.innerHTML = "C) " + perguntasQuiz[valor + 1].C
+        respostaD.innerHTML = "D) " + perguntasQuiz[valor + 1].D
+        checar()
+        valor++
+        enviarPontuacao()
+    }
+
+    function checar() {
+        var respostaSelecionada = document.querySelector('input[name="respostas"]:checked').value;
+        var input = document.querySelector('input[name="respostas"]:checked')
+        var label = input.nextSibling
+        var span = label.firstChild
+        var musicaAcerto = document.getElementById('respostaCertaAudio')
+        var musicaErro = document.getElementById('respostaErrada')
+        if (respostaSelecionada == perguntasQuiz[valor].Correta) {
+            console.log('temporizador', temporizador)
+            if (temporizador == 15 || temporizador == 14 || temporizador == 13 || temporizador == 12) {
+                pontos += 30
+            } else if (temporizador == 11 || temporizador == 10 || temporizador == 9) {
+                pontos += 15
+            } else if (temporizador == 8 || temporizador == 7 || temporizador == 6 || temporizador == 5) {
+                pontos += 5
+            } else {
+                pontos += 1
+            }
+            musicaAcerto.play()
+
+            pontos += 10
+            pontos = pontos
+            spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
+            tempoRespostas+= temporizador
+            
+        }
+        else {
+            tempoRespostas+= temporizador
+            musicaErro.play()
+            pontos = pontos
+            spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
+        }
+        console.log("tempo respondido", tempoRespostas)
+        console.log("temporizador", temporizador)
+        temporizador = 17
+
+    }
+function enviarPontuacao(){
+    if (valor == 9) {
+            var valorId= sessionStorage.ID_USUARIO
+            var musicaGuts = document.getElementById('tema_guts')
+            var divPerguntas = document.getElementById('lista_itens')
+            var resultado_quiz = document.getElementById('resultado_quiz')
+            var divbot = document.getElementById('botaoProximaQuestao')
+            var botoes = document.querySelector('.botoes')
+            botoes.style.display = 'none'
+            divbot.style.display = 'none'
+            divPerguntas.style.display = 'none'
+            resultado_quiz.style.display = 'flex'
+            spanPontuacao.innerHTML = `Parabéns!!! você fez ${pontos} pontos!!!`
+            setTimeout(() => {
+            fetch("/usuarios/enviarPontos", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                qtdPontosServer: pontos,
+                fkUsuarioServer:valorId
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                console.log('resposta', resposta)
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o envio de pontos!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+
+        });
+
+        return false;
+                 
+    }, 2000);
+            setTimeout(() => {
+                musicaGuts.play()
+            }, 2000);
+        }
+    }
+
+</script>
