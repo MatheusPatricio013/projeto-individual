@@ -100,6 +100,8 @@ function cadastrar(req, res) {
 function enviarPontos(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var qtdPontos = req.body.qtdPontosServer;
+    var tempoDeFinalizacao= req.body.tempoDeFinalizacaoServer;
+    var qtdRespostasCertas = req.body.qtdRespostasCertasServer;
     var fkUsuario = req.body.fkUsuarioServer;
 
 
@@ -109,7 +111,7 @@ function enviarPontos(req, res) {
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.enviarPontos(qtdPontos,fkUsuario)
+        usuarioModel.enviarPontos(qtdPontos,tempoDeFinalizacao,qtdRespostasCertas,fkUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -125,9 +127,76 @@ function enviarPontos(req, res) {
                 }
             );
     }
+
+    
 }
 
+function calcularAcerto(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.calcularAcerto(fkUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cálculo! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+function selecionarTop10(req, res) {
+
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.selecionarTop10(req,res)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cálculo! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+function verHistorico(req,res){
+        var fkUsuario = req.params.fkUsuario;
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.verHistorico(fkUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cálculo! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+
 module.exports = {
+    verHistorico,
+    selecionarTop10,
+    calcularAcerto,
     enviarPontos,
     entrar,
     cadastrar,

@@ -11,6 +11,8 @@ body {
 
 #header {
     background-color: black;
+    align-items: center;
+    text-align: center;
 }
 
 .container.header {
@@ -36,11 +38,21 @@ body {
     align-items: center;
 
 }
+#b_usuario{
+    color: white;
+    margin-right: 20px;
+    display: flex;
+    margin-left: 45%;
+    justify-content: center;
+    align-items: center;
+
+}
+
 
 .navbar li {
 
     display: flex;
-    padding: 15%;
+    padding: 7%;
     
  
 }
@@ -89,7 +101,23 @@ body {
     list-style-type: none;
     list-style: none;
 }
+#tempo{
+    font-size: 50px;
 
+    text-align: center;
+    text-shadow:
+    4px 4px 1px #300000,
+    4px 6px 1px #400000,
+    4px 8px 1px #500000,
+    4px 10px 1px #600000,
+    4px 12px 1px #700000,
+    4px 0px 1px #B00000,
+    4px 0px 1px #C00000,
+    4px 0px 1px #D00000,
+    4px 0px 1px #E00000,
+    4px 0px 2px #FF0000;
+
+}
 #resultado_quiz {
     align-items: center;
     display: flex;
@@ -147,8 +175,6 @@ body {
     4px 0px 1px #E00000,
     4px 0px 2px #FF0000;
 }
-
-
 
 #container_quiz{
     color: white;
@@ -290,11 +316,10 @@ button{
    
 }
 #span_pontos{
-    color: white;
+    color: red;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 14px 15px 15px 14px;
-    font-size: 20px;
-    border-bottom: #300000 14px solid;
+    font-size: 25px;
 }

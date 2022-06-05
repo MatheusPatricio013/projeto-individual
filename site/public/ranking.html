@@ -6,15 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/ranking.css">
+    <script src="./js/funcoes.js"></script>
     <title>Berserkers | Quiz</title>
 </head>
 
-<body>
+<body onload="validarSessao()">
     <div id="header">
         <div class="container header">
             <div id="logo"><img src="./assets/imgs/icon berserk.png" alt=""></div>
+            <span id="b_usuario">Olá, Matheus!</span>
             <ul class="navbar">
-                <li class="nav_menu"><a href="perfil.html">Olá</a></li>
                 <li class="nav_menu "><a href="index.html">Home</a></li>
                 <li class="nav_menu"><a href="perfil.html">Perfil</a></li>
                 <li class="nav_menu "><a href="login.html">Sair</a></li>
@@ -35,7 +36,7 @@
     </div>
     <div id="quiz" style="display: none;">
         <div id="lista_itens">
-            <h1 id="tempo" style="margin-left: 30px">Tempo:16 </h1>
+            <h2 id="tempo" style="margin-left: 30px">Tempo:16 </h2>
             <h1 id="questao"></h1>
             <div class="div_respostas">
                 <input type="radio" name="respostas" value="A" id="resposta1">
@@ -79,127 +80,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 <script>
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var ctx2 = document.getElementById("myChartRanking").getContext("2d");
-    var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ["% De acertos", "% De erros"],
-            datasets: [{
-                label: ['acertos', 'faltaram'],
-                data: [80, 20],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
 
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Estatísticas',
-                fontColor: 'white',
-                fontSize: 32
-            },
-            legend: {
-                labels: {
-                    fontColor: "white",
-                    fontSize: 18
-                }
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        fontColor: 'white',
-                        fontSize: 20,
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-
-    var myChart2 = new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: ["Matheus", "zeca", "Carla", "Juca", "Claudia", "Felipe", "Pablo", "Ana", "carlos", "Pedro"],
-            datasets: [{
-                label: ["Pontos"],
-                data: [220, 210, 180, 120, 80, 50, 40, 40, 30, 20,],
-                backgroundColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Ranking dos 10 melhores da semana!',
-                fontSize: 32,
-                fontColor: 'white'
-            },
-            legend: {
-                labels: {
-                    fontColor: "white",
-                    fontSize: 18
-                }
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        fontColor: 'white',
-                        fontSize: 20,
-                        beginAtZero: true
-                    }
-                }],
-                xAxes: [{
-                    ticks: {
-                        fontColor: 'white',
-                        fontSize: 20,
-                        beginAtZero: true
-                    }
-                }],
-                labels: [{
-                    ticks: {
-                        fontColor: 'white',
-                        fontSize: 20,
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
 
     const perguntasQuiz = [
         {
@@ -281,16 +162,23 @@
             C: "Defesa Sombria",
             D: "A escuridão",
             Correta: 'B'
-        },
+        }, {
+            Questão: "Qual o nome da armadura de Guts?",
+            A: "Armadura Negra",
+            B: "Armadura Berserker",
+            C: "Defesa Sombria",
+            D: "A escuridão",
+            Correta: 'B'
+        }
     ]
     var temporizador = 17
     var valor = 0
     var pontos = 0
-    var tempoRespostas= 0
+    var tempoRespostas = 0
+    var respostasCertas = 0
     var spanPontuacao = document.getElementById('span_pontos')
     var tituloTempo = document.getElementById('tempo')
     tituloTempo.style.color = 'white'
-
 
     function comecar_quiz() {
         temporizador = 17
@@ -320,6 +208,7 @@
     }
 
     function proximaQuestao() {
+        console.log('valor::', valor)
         const questao = document.getElementById('questao')
         const respostaA = document.getElementById('respostaA')
         const respostaB = document.getElementById('respostaB')
@@ -331,8 +220,9 @@
         respostaC.innerHTML = "C) " + perguntasQuiz[valor + 1].C
         respostaD.innerHTML = "D) " + perguntasQuiz[valor + 1].D
         checar()
-        valor++
         enviarPontuacao()
+        valor++
+
     }
 
     function checar() {
@@ -357,12 +247,13 @@
 
             pontos += 10
             pontos = pontos
+            respostasCertas += 1
             spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
-            tempoRespostas+= temporizador
-            
+            tempoRespostas += 16 - temporizador
+
         }
         else {
-            tempoRespostas+= temporizador
+            tempoRespostas += 16 - temporizador
             musicaErro.play()
             pontos = pontos
             spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
@@ -372,9 +263,9 @@
         temporizador = 17
 
     }
-function enviarPontuacao(){
-    if (valor == 9) {
-            var valorId= sessionStorage.ID_USUARIO
+    function enviarPontuacao() {
+        if (valor == 9) {
+            var valorId = sessionStorage.ID_USUARIO
             var musicaGuts = document.getElementById('tema_guts')
             var divPerguntas = document.getElementById('lista_itens')
             var resultado_quiz = document.getElementById('resultado_quiz')
@@ -386,38 +277,215 @@ function enviarPontuacao(){
             resultado_quiz.style.display = 'flex'
             spanPontuacao.innerHTML = `Parabéns!!! você fez ${pontos} pontos!!!`
             setTimeout(() => {
-            fetch("/usuarios/enviarPontos", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                qtdPontosServer: pontos,
-                fkUsuarioServer:valorId
-            })
-        }).then(function (resposta) {
+                selecionarTop10()
+                calcularAcerto()
+                fetch("/usuarios/enviarPontos", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        qtdPontosServer: pontos,
+                        tempoDeFinalizacaoServer: tempoRespostas,
+                        qtdRespostasCertasServer: respostasCertas,
+                        fkUsuarioServer: valorId
+                    })
+                }).then(function (resposta) {
 
-            console.log("resposta: ", resposta);
+                    console.log("resposta: ", resposta);
 
-            if (resposta.ok) {
+                    if (resposta.ok) {
 
-                console.log('resposta', resposta)
+                        console.log('resposta', resposta)
 
-            } else {
-                throw ("Houve um erro ao tentar realizar o envio de pontos!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
+                    } else {
+                        throw ("Houve um erro ao tentar realizar o envio de pontos!");
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
 
-        });
+                });
 
-        return false;
-                 
-    }, 2000);
+                return false;
+
+            }, 2000);
             setTimeout(() => {
                 musicaGuts.play()
             }, 2000);
         }
+    }
+
+
+
+    function selecionarTop10() {
+        fetch("/usuarios/selecionarTop10", { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoRanking(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+
+
+
+
+    function calcularAcerto() {
+        var fkUsuario = sessionStorage.ID_USUARIO
+        fetch(`/usuarios/calcularAcerto/${fkUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta, fkUsuario);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+    function plotarGrafico(resposta,fkUsuario) {
+        var ctx = document.getElementById("myChart").getContext("2d");
+
+console.log("resposta[0]",resposta[0].qtdRespostasCertas)
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [`${resposta[0].qtdRespostasCertas*10}% De acerto`,`${(10 - resposta[0].qtdRespostasCertas)*10}% De erro`],
+                datasets: [{
+                    label: ['acertos', 'faltaram'],
+                    data: [resposta[0].qtdRespostasCertas, (10 - resposta[0].qtdRespostasCertas)],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Estatísticas',
+                    fontColor: 'white',
+                    fontSize: 32
+                },
+                legend: {
+                    labels: {
+                        fontColor: "white",
+                        fontSize: 18
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: 'white',
+                            fontSize: 20,
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+function plotarGraficoRanking(resposta){
+    var ctx2 = document.getElementById("myChartRanking").getContext("2d");
+        console.log("nome resposta",resposta[0].nome)
+        console.log("qtd pontos resposta",resposta[0].maiorPontuacao)
+        var myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: [`${resposta[0].nome}`,`${resposta[1].nome}`, "Carla", "Juca", "Claudia", "Felipe", "Pablo", "Ana", "carlos", "Pedro"],
+                datasets: [{
+                    label: ["Pontos"],
+                    data: [resposta[0].maiorPontuacao,resposta[1].maiorPontuacao, 180, 120, 80, 50, 40, 40, 30, 20,],
+                    backgroundColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Ranking dos 10 melhores da semana!',
+                    fontSize: 32,
+                    fontColor: 'white'
+                },
+                legend: {
+                    labels: {
+                        fontColor: "white",
+                        fontSize: 18
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: 'white',
+                            fontSize: 20,
+                            beginAtZero: true
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: 'white',
+                            fontSize: 20,
+                            beginAtZero: true
+                        }
+                    }],
+                    labels: [{
+                        ticks: {
+                            fontColor: 'white',
+                            fontSize: 20,
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
     }
 
 </script>

@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/funcoes.js"></script>
     <link rel="stylesheet" href="./css/perfil.css">
     <title>Berserquiz || Perfil</title>
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(),verHistorico()">
     <div id="header">
         <div class="container header">
             <div id="logo"><img src="./assets/imgs/icon berserk.png" alt=""></div>
@@ -25,12 +26,46 @@
     <h1>Histórico de pontos no Quiz!</h1>
 
     <span id="historicoPontuacao">
-        Pontos:    <br>
-        Data:       <br>    
-        Tempo total:  <br> <br><br>
+
      </span><br>
 </div>
 
     </div>
 
 </html>
+<script>
+
+function verHistorico() {
+    var registroHistorico = document.getElementById('historicoPontuacao')
+    var fkUsuario = sessionStorage.ID_USUARIO
+        fetch(`/usuarios/verHistorico/${fkUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    for(var i = 0; i < resposta.length; i++){
+
+                        registroHistorico.innerHTML+= ` Pontos:${resposta[i].qtdPontos}   <br>
+                                                        Data: ${resposta[i].data_registro}      <br>    
+                                                         Tempo total:${resposta[i].tempoDeFinalizacao}  <br> <br><br>`
+
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+
+
+
+
+
+
+
+</script>

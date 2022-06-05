@@ -17,11 +17,20 @@ alternativaD varchar(80),
 resposta char(1)
 check (resposta = 'A' or resposta = 'B' or resposta = 'C' or resposta = 'D')
 );
-drop table pontos;
+
+
 create table pontos(
 idPontos int primary key auto_increment,
 qtdPontos int,
 data_registro datetime default current_timestamp,
+tempoDeFinalizacao int,
 fkUsuario int,
 foreign key (fkUsuario) references usuarios(idUsuario))
 ;
+select * from pontos;
+select * from usuarios;
+
+select nome,qtdPontos 
+from usuarios  
+join pontos
+on fkUsuario = idUsuario group by fkUsuario order by qtdPontos desc;
