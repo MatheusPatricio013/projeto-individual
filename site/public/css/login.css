@@ -67,7 +67,7 @@ body {
     border-radius: 30px;
     background-color: rgba(128, 0, 21, 0.153);
     width: 30%;
-    height: 44vh;
+    height: 48vh;
     margin: 0 auto;
     margin-top: 5%;
     display: flex;
@@ -98,7 +98,7 @@ body {
     cursor: pointer;
     background-image: linear-gradient(to right, #870000 0%, #190A05 51%, #870000 100%);
     margin: 10px;
-    padding: 15px 45px;
+    padding: 15px 35px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
@@ -137,11 +137,17 @@ body {
         text-shadow: none;
     }
 }
-input{
-    width: 300px;
-    height: 40px;
-    border-radius: 10px;
-    border: 0
+#input_email{
+    width: 70%;
+    height: 90%;
+    border-radius: 20px;
+    border: 0;
+}
+#input_senha{
+    width: 70%;
+    height: 90%;
+    border-radius: 20px;
+    border: 0;
 }
 
 .botoes{

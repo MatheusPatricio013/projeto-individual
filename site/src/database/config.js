@@ -8,7 +8,7 @@ var mySqlConfig = {
     host: "localhost",
     database: "berserquiz",
     user: "root",
-    password: "",
+    password: "spt3ch",
 };
 
 function executar(instrucao) {
