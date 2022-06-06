@@ -56,7 +56,7 @@ function selecionarTop10(){
     select nome,max(qtdPontos) as 'maiorPontuacao' 
                          from usuarios  
                                 join pontos
-                                    on fkUsuario = idUsuario group by fkUsuario order by qtdPontos asc limit 10;
+                                    on fkUsuario = idUsuario group by fkUsuario order by qtdPontos desc limit 10;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
