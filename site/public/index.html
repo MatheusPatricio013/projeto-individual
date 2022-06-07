@@ -99,7 +99,7 @@
                 <!--  <h3>Griffith</h3> -->
                 <img src="./assets/imgs/FullBodyGriffith.webp" width="400px">
                 <!--   <h3>Caska</h3> -->
-                <img src="./assets/imgs/caska.jpeg" width="400px">
+                <img src="./assets/imgs/caskaFundo.jpeg" width="400px">
                 <!-- <h3>Nosferatu Zodd</h3> -->
                 <img src="./assets/imgs/zodd.jpg" width="400px">
                 <!--   <h3>Farnese</h3> -->
@@ -231,8 +231,8 @@
         if (index > imagem.length - 1) {
             index = 0
         }
-        pixelAtual += 450
-        containerImagem.style.transform = `translateX(${-index * 450}px)`
+        pixelAtual += 400
+        containerImagem.style.transform = `translateX(${-index * 400}px)`
         spanDescricao.innerHTML = `
     Nome: ${descricaoPersonagens[index].Nome}  <br><br>
           História:${descricaoPersonagens[index].Historia} <br><br>
@@ -246,7 +246,7 @@
         if (index <= 0) {
             index = 0
         }
-        containerImagem.style.transform = `translateX(${-index * 450}px)`
+        containerImagem.style.transform = `translateX(${-index * 400}px)`
         spanDescricao.innerHTML = `
     Nome: ${descricaoPersonagens[index].Nome}  <br><br>
           História:${descricaoPersonagens[index].Historia} <br><br>
