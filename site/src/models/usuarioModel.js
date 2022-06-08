@@ -54,19 +54,19 @@ function calcularAcerto(fkUsuario){
 function selecionarTop10(){
     var instrucao = `
     select nome,max(qtdPontos) as 'maiorPontuacao' 
-                         from usuarios  
-                                join pontos
-                                    on fkUsuario = idUsuario group by fkUsuario order by qtdPontos desc limit 10;
+    from pontos 
+           join usuarios
+               on fkUsuario = idUsuario group by nome order by max(qtdPontos) desc limit 10;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 function verHistorico(fkUsuario){
     var instrucao = `
-    select qtdPontos,data_registro,tempoDeFinalizacao
+    select qtdPontos,DATE_FORMAT(data_registro,'%d/%b/%Y  %H:%i:%s') as 'data_registro' ,tempoDeFinalizacao
 	from pontos	
 		join usuarios
-        on fkUsuario = idUsuario where fkUsuario = '${fkUsuario}' order by data_registro;
+        on fkUsuario = idUsuario where fkUsuario = ${fkUsuario} order by data_registro;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

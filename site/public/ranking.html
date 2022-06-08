@@ -249,11 +249,11 @@
             pontos = pontos
             respostasCertas += 1
             spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
-            tempoRespostas += 16 - temporizador
+            tempoRespostas += 16.5 - temporizador
 
         }
         else {
-            tempoRespostas += 16 - temporizador
+            tempoRespostas += 16.5 - temporizador
             musicaErro.play()
             pontos = pontos
             spanPontuacao.innerHTML = `Pontos atuais: ${pontos}`
@@ -317,28 +317,6 @@
 
 
 
-    function selecionarTop10() {
-        fetch("/usuarios/selecionarTop10", { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    plotarGraficoRanking(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-
-    }
-
-
-
-
-
     function calcularAcerto() {
         var fkUsuario = sessionStorage.ID_USUARIO
         fetch(`/usuarios/calcularAcerto/${fkUsuario}`, { cache: 'no-store' }).then(function (response) {
@@ -370,8 +348,8 @@ console.log("resposta[0]",resposta[0].qtdRespostasCertas)
                     label: ['acertos', 'faltaram'],
                     data: [resposta[0].qtdRespostasCertas, (10 - resposta[0].qtdRespostasCertas)],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
+                        'blue',
+                        'red',
 
                     ],
                     borderColor: [
@@ -407,17 +385,46 @@ console.log("resposta[0]",resposta[0].qtdRespostasCertas)
             }
         });
     }
+
+    function selecionarTop10() {
+        fetch("/usuarios/selecionarTop10", { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    plotarGraficoRanking(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
 function plotarGraficoRanking(resposta){
     var ctx2 = document.getElementById("myChartRanking").getContext("2d");
         console.log("nome resposta",resposta[0].nome)
         console.log("qtd pontos resposta",resposta[0].maiorPontuacao)
+        var maiorPontuacao1 = resposta[0].maiorPontuacao
+        var maiorPontuacao2 = resposta[1].maiorPontuacao
+        var maiorPontuacao3 = resposta[2].maiorPontuacao
+        var maiorPontuacao4 = resposta[3].maiorPontuacao
+        var maiorPontuacao5 = resposta[4].maiorPontuacao
+        var maiorPontuacao6 = resposta[5].maiorPontuacao
+        var maiorPontuacao7 = resposta[6].maiorPontuacao
+        var maiorPontuacao8 = resposta[7].maiorPontuacao
+        var maiorPontuacao9 = resposta[8].maiorPontuacao
+        var maiorPontuacao10 = resposta[9].maiorPontuacao
         var myChart2 = new Chart(ctx2, {
             type: 'bar',
             data: {
-                labels: [`${resposta[0].nome}`,`Zeca`, "Carla", "Juca", "Claudia", "Felipe", "Pablo", "Ana", "carlos", "Pedro"],
+                labels: [`${resposta[0].nome}`,`${resposta[1].nome}`,`${resposta[2].nome}`,`${resposta[3].nome}`,`${resposta[4].nome}`,`${resposta[5].nome}`,`${resposta[6].nome}`,`${resposta[7].nome}`,`${resposta[8].nome}`,`${resposta[9].nome}`,],
                 datasets: [{
                     label: ["Pontos"],
-                    data: [resposta[0].maiorPontuacao,182, 180, 120, 80, 50, 40, 40, 30, 20,],
+                    data: [maiorPontuacao1,maiorPontuacao2,maiorPontuacao3,maiorPontuacao4,maiorPontuacao5,maiorPontuacao6,maiorPontuacao7,maiorPontuacao8,maiorPontuacao9, maiorPontuacao10],
                     backgroundColor: [
                         'rgba(255,99,132,1)',
                         'rgba(54, 162, 235, 1)',

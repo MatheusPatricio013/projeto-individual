@@ -1,8 +1,6 @@
 var mysql = require("mysql2");
 var sql = require('mssql');
 
-
-
 // CONEXÃO DO MYSQL WORKBENCH (LOCAL)
 var mySqlConfig = {
     host: "localhost",
