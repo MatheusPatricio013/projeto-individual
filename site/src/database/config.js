@@ -6,8 +6,11 @@ var mySqlConfig = {
     host: "localhost",
     database: "berserquiz",
     user: "root",
-    password: "",
+    password: "spt3ch",
 };
+setTimeout(() => {
+    
+}, );
 
 function executar(instrucao) {
   if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {

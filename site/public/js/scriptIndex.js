@@ -82,6 +82,7 @@ setaEsquerda.addEventListener('click', () => {
     somPaginaVirando.play()
 })
 
+
 var index = 0;
 var pixelAtual = 0
 function slider() {
