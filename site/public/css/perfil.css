@@ -43,6 +43,7 @@ body {
     display: flex;
     margin-left: 55%;
     justify-content: center;
+    font-weight: bold;
     align-items: center;
 
 }
@@ -93,4 +94,6 @@ border-radius: 10px;
   align-items: center;
   justify-content: center;
   margin-left: -20%;
+  padding:10px;
+  border-top: 10px black solid;
 }

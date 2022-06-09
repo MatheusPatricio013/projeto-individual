@@ -13,7 +13,7 @@
 <body onload="validarSessao()">
     <div id="header">
         <div class="container header">
-            <div id="logo"><img src="./assets/imgs/icon berserk.png" alt=""></div>
+            <div id="logo"><img id="logoImg"src="./assets/imgs/icon berserk.png" alt=""></div>
             <span id="b_usuario">Olá, Matheus!</span>
             <ul class="navbar">
                 <li class="nav_menu "><a href="index.html">Home</a></li>
@@ -27,10 +27,11 @@
         <div class="informacoes">
             <h2>Informações sobre o Quiz:</h2>
             <div class="info_quiz">1-Cada pergunta tem 15 segundos para ser respondida.</div>
-            <div class="info_quiz">2-São 10 perguntas cada arco.</div>
+            <div class="info_quiz">2-São 10 perguntas no total.</div>
             <div class="info_quiz">3-Cada resposta correta vale 10 pontos.</div>
             <div class="info_quiz">4-Se tentar refazer o teste, seus pontos serão zerados.</div>
             <div class="info_quiz">5-Cada pergunta tem apenas uma resposta correta.</div>
+            <div class="info_quiz">6-Sua pontuação cresce de acordo com o tempo respondido.</div>
         </div>
         <button id="quiz_btn" onclick="comecar_quiz()">Começar quiz</button>
     </div>
@@ -70,7 +71,12 @@
             <div id="chartQuizRanking" style="width:60vw">
                 <canvas id="myChartRanking"></canvas>
             </div>
+           
         </div>
+    </div>
+    <div id="containerImagens" style="display:none">
+        <h1>Parabéns, você é um BERSERKER</h1>
+       <img  id="imagemSlider" src="./assets/imgs/lua.jpeg" alt="" srcset="">
     </div>
 </body>
 
@@ -80,8 +86,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 <script>
-
-
+    
+    var contador = 0
+    const imagens = ["./assets/imgs/lua.jpeg","./assets/imgs/img2.jpg","./assets/imgs/armadura berserk.jpg","./assets/imgs/berserklogin.webp"]
+function mudarImagensFundo(){
+      var divImagem =  document.getElementById("imagemSlider");
+      var containerImagem =  document.getElementById("containerImagens");
+      containerImagem.style.display='block'
+        setInterval(() => {
+            divImagem.setAttribute("src",imagens[contador])
+            contador++
+            if(contador == 4){
+                contador = 0
+            }
+        }, 4000);
+    }
     const perguntasQuiz = [
         {
             Questão: "Qual o nome do protagonista?",
@@ -178,9 +197,11 @@
     var respostasCertas = 0
     var spanPontuacao = document.getElementById('span_pontos')
     var tituloTempo = document.getElementById('tempo')
+    var botaoIniciar = document.getElementById('quiz_btn')
     tituloTempo.style.color = 'white'
 
     function comecar_quiz() {
+        botaoIniciar.style.display='none'
         temporizador = 17
         const divQuiz = document.getElementById('quiz')
         divQuiz.style.display = "block"
@@ -276,6 +297,7 @@
             divPerguntas.style.display = 'none'
             resultado_quiz.style.display = 'flex'
             spanPontuacao.innerHTML = `Parabéns!!! você fez ${pontos} pontos!!!`
+            musicaGuts.play()
                 fetch("/usuarios/enviarPontos", {
                     method: "POST",
                     headers: {
@@ -292,7 +314,7 @@
                     console.log("resposta: ", resposta);
                     
                     if (resposta.ok) {
-                        
+                        mudarImagensFundo()
                         selecionarTop10()
                         calcularAcerto()
                         console.log('resposta', resposta)
@@ -306,15 +328,12 @@
                 });
                 
                 return false;
-                
-                    setTimeout(() => {
-                musicaGuts.play()
-            }, 1000);
+
         }
+
     }
-
-
-
+    
+    
     function calcularAcerto() {
         var fkUsuario = sessionStorage.ID_USUARIO
         fetch(`/usuarios/calcularAcerto/${fkUsuario}`, { cache: 'no-store' }).then(function (response) {
@@ -322,7 +341,7 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
-
+                    
                     plotarGrafico(resposta, fkUsuario);
                 });
             } else {
@@ -332,31 +351,26 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
-
-    }
-    function plotarGrafico(resposta,fkUsuario) {
-        var ctx = document.getElementById("myChart").getContext("2d");
-
-console.log("resposta[0]",resposta[0].qtdRespostasCertas)
-        var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: [`${resposta[0].qtdRespostasCertas*10}% De acerto`,`${(10 - resposta[0].qtdRespostasCertas)*10}% De erro`],
-                datasets: [{
-                    label: ['acertos', 'faltaram'],
-                    data: [resposta[0].qtdRespostasCertas, (10 - resposta[0].qtdRespostasCertas)],
-                    backgroundColor: [
-                        'blue',
-                        'red',
-
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-
-                    ],
-                    borderWidth: 1
-                }]
+            
+        }
+        function plotarGrafico(resposta,fkUsuario) {
+            var ctx = document.getElementById("myChart").getContext("2d");
+            
+            console.log("resposta[0]",resposta[0].qtdRespostasCertas)
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [`${resposta[0].qtdRespostasCertas*10}% De acerto`,`${(10 - resposta[0].qtdRespostasCertas)*10}% De erro`],
+                    datasets: [{
+                        label: ['acertos', 'faltaram'],
+                        data: [resposta[0].qtdRespostasCertas, (10 - resposta[0].qtdRespostasCertas)],
+                        backgroundColor: [
+                            'blue',
+                            '#DC143C',
+                            
+                        ],
+                        
+                    }]
             },
             options: {
                 title: {
@@ -374,36 +388,34 @@ console.log("resposta[0]",resposta[0].qtdRespostasCertas)
                 scales: {
                     yAxes: [{
                         ticks: {
-                            fontColor: 'white',
-                            fontSize: 20,
-                            beginAtZero: true
+                            display:false
                         }
                     }]
                 }
             }
         });
     }
-
+    
     function selecionarTop10() {
         fetch("/usuarios/selecionarTop10", { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
+                    
                     plotarGraficoRanking(resposta);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
         })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+        
     }
-
-function plotarGraficoRanking(resposta){
-    var ctx2 = document.getElementById("myChartRanking").getContext("2d");
+    
+    function plotarGraficoRanking(resposta){
+        var ctx2 = document.getElementById("myChartRanking").getContext("2d");
         console.log("nome resposta",resposta[0].nome)
         console.log("qtd pontos resposta",resposta[0].maiorPontuacao)
         var maiorPontuacao1 = resposta[0].maiorPontuacao
@@ -424,31 +436,31 @@ function plotarGraficoRanking(resposta){
                     label: ["Pontos"],
                     data: [maiorPontuacao1,maiorPontuacao2,maiorPontuacao3,maiorPontuacao4,maiorPontuacao5,maiorPontuacao6,maiorPontuacao7,maiorPontuacao8,maiorPontuacao9, maiorPontuacao10],
                     backgroundColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-
-                    ],
+                   '#D4AF37',
+                   '#808080',
+                   '#CD7F32',
+                   '#DC143C',
+                   '#DC143C',
+                   '#DC143C',
+                   '#DC143C',
+                   '#DC143C',
+                   '#DC143C',
+                   '#DC143C',
+                   
+                ],
+                borderColor: [
+                    'white',
+                    'white',
+                    'white',
+                    'white',
+                    'white',
+                    'white',
+                    'white',
+                    'white',
+                    'white',
+                    'white',
+                    
+                ],
                     borderWidth: 1
                 }]
             },
@@ -491,5 +503,7 @@ function plotarGraficoRanking(resposta){
             }
         });
     }
+
+
 
 </script>

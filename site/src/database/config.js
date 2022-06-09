@@ -6,7 +6,7 @@ var mySqlConfig = {
     host: "localhost",
     database: "berserquiz",
     user: "root",
-    password: "spt3ch",
+    password: "",
 };
 setTimeout(() => {
     

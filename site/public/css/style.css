@@ -86,11 +86,11 @@ body {
 #card_introducao {
     margin: 0 auto;
     margin-top: 20px;
-width: 40%;
+width: 60%;
 background-color: rgb(198, 0, 0);
 border-radius: 15px;
 height: 300px;
-
+padding: 15px;
 align-items: center;
 justify-content: center;
 text-align: center;
@@ -112,13 +112,14 @@ color: black;
 #container_resumo {
     margin: 0 auto;
     margin-top: 100px;
-width: 50%;
+width: 60%;
 background-color:#FFD700;
 border-radius: 15px;
 height: 20%;
 background-image: url('../assets/imgs/fundopapiro.jpg');
 background-repeat: no-repeat;
 background-size: 100% 100%;
+padding: 15px;
 
 }
 #container_resumo h1{

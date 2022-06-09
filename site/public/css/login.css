@@ -140,7 +140,7 @@ body {
 }
 #input_email{
     width: 70%;
-    height: 20px;
+    height: 10px;
     border-radius: 20px;
     border: 0;
     padding: 15px;
@@ -148,7 +148,7 @@ body {
 }
 #input_senha{
     width: 70%;
-    height: 20px;
+    height: 10px;
     border-radius: 20px;
     border: 0;
     padding: 15px;

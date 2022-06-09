@@ -44,6 +44,7 @@ body {
     margin-right: 20px;
     display: flex;
     margin-left: 45%;
+    font-weight: bold;
     justify-content: center;
     align-items: center;
 
@@ -323,4 +324,20 @@ button{
     justify-content: center;
     padding: 14px 15px 15px 14px;
     font-size: 25px;
+}
+#containerImagens{
+    align-items: center;
+    margin: 0 auto;
+    width: 600px;
+    height: 300px;
+}
+#containerImagens h1{
+    text-align: center;
+   color: white;
+   font-size: 25px;
+   border-bottom: 2px red solid;
+}
+#imagemSlider{
+    width: 600px;
+    height: 300px;
 }
