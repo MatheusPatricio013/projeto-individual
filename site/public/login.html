@@ -42,7 +42,9 @@
             emailVar.endsWith(".com.br", ".com", ".ind.br", ".ind")
         ) {
             span_erro_email.innerHTML = '*Insira "@" e terminação .com, por exemplo';
-        } else {
+        }
+        
+        else {
             span_erro_email.innerHTML = "✓";
         }
 
@@ -61,7 +63,6 @@
         })
             .then(function (resposta) {
                 console.log("ESTOU NO THEN DO entrar()!");
-
                 if (resposta.ok) {
                     console.log(resposta);
 
@@ -79,7 +80,7 @@
                     });
                 } else {
                     console.log("Houve um erro ao tentar realizar o login!");
-
+                    span_erro_email.innerHTML = 'Email e/ou senha inválido!'
                     resposta.text().then((texto) => {
                         console.error(texto);
                         finalizarAguardar(texto);
